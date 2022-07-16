@@ -1,3 +1,4 @@
+import unittest
 from unittest import TestCase
 
 import pandas
@@ -21,3 +22,7 @@ class TestTotalCarsMetricGenerator(TestCase):
     def test_generate_metric(self):
         result = TotalCarsMetricGenerator.generate_metric(test_data_frame1)
         self.assertEqual(result, sum(df_input))
+
+
+if __name__ == '__main__':
+    unittest.main()
