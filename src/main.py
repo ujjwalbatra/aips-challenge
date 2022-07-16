@@ -17,8 +17,9 @@ if __name__ == "__main__":
         result: str = ''
 
         for metric_cls in sorted(BaseMetricGenerator.__subclasses__(), key=lambda x: x.order_number()):
-            if metric_cls.enabled() and metric_cls.meets_condition(data_frame):
-                result += f"\n{metric_cls.generate_metric_result(data_frame)}"
+            metric_cls_obj = metric_cls(logger, data_frame)
+            if metric_cls_obj.enabled() and metric_cls_obj.meets_condition():
+                result += f"\n{metric_cls_obj.generate_metric_result()}"
 
         if len(result) > 0:
             OutputGenerator(result, f'output/report:{datetime.now()}.txt').write_output()

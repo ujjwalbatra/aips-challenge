@@ -1,39 +1,30 @@
-import logging
-
-import pandas
-
 from metrics_generator.base_metric_generator import BaseMetricGenerator
 
 
 class TotalCarsMetricGenerator(BaseMetricGenerator):
-    _logger = logging.getLogger(__name__)
 
-    @classmethod
-    def enabled(cls) -> bool:
+    def enabled(self) -> bool:
         return True
 
     @staticmethod
     def order_number() -> int:
         return 1
 
-    @staticmethod
-    def meets_condition(data_frame: pandas.DataFrame) -> bool:
+    def meets_condition(self) -> bool:
         column_name = 'Count'
         column_type = 'int64'
 
-        if column_name in data_frame and data_frame.dtypes[column_name] == column_type:
+        if column_name in self._data_frame and self._data_frame.dtypes[column_name] == column_type:
             return True
         else:
-            TotalCarsMetricGenerator._logger.error('Failed TotalCarsMetricGenerator.meets_condition')
+            self._logger.error('Failed TotalCarsMetricGenerator.meets_condition')
             return False
 
-    @staticmethod
-    def generate_metric(data_frame: pandas.DataFrame):
-        return data_frame['Count'].sum()
+    def generate_metric(self):
+        return self._data_frame['Count'].sum()
 
-    @staticmethod
-    def generate_metric_result(data_frame: pandas.DataFrame) -> str:
-        total_cars = TotalCarsMetricGenerator.generate_metric(data_frame)
+    def generate_metric_result(self) -> str:
+        total_cars = self.generate_metric()
 
         response = f'Total Cars = {total_cars}'
 

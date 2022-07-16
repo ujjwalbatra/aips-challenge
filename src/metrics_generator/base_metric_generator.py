@@ -1,12 +1,16 @@
 from abc import ABC, abstractmethod
+from logging import Logger
 
 import pandas
 
 
 class BaseMetricGenerator(ABC):
-    @staticmethod
+    def __init__(self, logger: Logger, data_frame: pandas.DataFrame):
+        self._logger = logger
+        self._data_frame = data_frame.copy()
+
     @abstractmethod
-    def enabled() -> bool:
+    def enabled(self) -> bool:
         raise NotImplementedError()
 
     @staticmethod
@@ -14,17 +18,14 @@ class BaseMetricGenerator(ABC):
     def order_number() -> int:
         raise NotImplementedError()
 
-    @staticmethod
     @abstractmethod
-    def meets_condition(data_frame: pandas.DataFrame) -> bool:
+    def meets_condition(self) -> bool:
         raise NotImplementedError()
 
-    @staticmethod
     @abstractmethod
-    def generate_metric(data_frame: pandas.DataFrame):
+    def generate_metric(self):
         raise NotImplementedError()
 
-    @staticmethod
     @abstractmethod
-    def generate_metric_result(data_frame: pandas.DataFrame) -> str:
+    def generate_metric_result(self) -> str:
         raise NotImplementedError()
