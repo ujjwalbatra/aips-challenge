@@ -2,7 +2,7 @@
 
 Python version 3.9
 
-<span style="color:red">All commands to be executed from project root.</span>.
+**All commands to be executed from project root.**
 
 ### Running the project
 ```shell
