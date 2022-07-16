@@ -37,5 +37,5 @@ class ThreeLeastConsecutiveTotalMetricGenerator(BaseMetricGenerator):
     def generate_metric_result(self) -> str:
         result = self.generate_metric()
         return f"""
-Top 3 half hours with most cars:
+Consecutive 3 hours with least cars:
 {result.to_string(index=False)}"""
