@@ -1,3 +1,4 @@
+import logging
 import unittest
 from unittest import TestCase
 
@@ -11,6 +12,12 @@ test_data_frame2 = pandas.DataFrame(df_input, columns=['Counts'])
 
 
 class TestTotalCarsMetricGenerator(TestCase):
+    def setUp(self):
+        logging.disable(logging.CRITICAL)
+
+    def tearDown(self):
+        logging.disable(logging.NOTSET)
+
     def test_meets_condition_success(self):
         result = TotalCarsMetricGenerator.meets_condition(test_data_frame1)
         self.assertEqual(result, True)
