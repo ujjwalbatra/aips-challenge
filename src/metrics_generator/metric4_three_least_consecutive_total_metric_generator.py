@@ -23,6 +23,7 @@ class ThreeLeastConsecutiveTotalMetricGenerator(BaseMetricGenerator):
             return False
 
     def generate_metric(self):
+        # Assuming the input will have all timestamps (including 0). Also mentioned in README.md
         self._data_frame = self._data_frame.sort_values(by=['Timestamp'])
         self._data_frame['ConsecutiveSum'] = self._data_frame['Count'].rolling(3).sum().shift(-2)
         self._data_frame = self._data_frame.drop('Count', axis=1)
