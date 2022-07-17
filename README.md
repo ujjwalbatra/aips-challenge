@@ -57,11 +57,6 @@ In case the timestamps are missing (like in sample text), the solution is:
 └── test                                          # contains all the unit tests
     ├── Makefile
     ├── __init__.py
-    │   ├── __init__.cpython-38.pyc
-    │   ├── test_metric1_total_cars_metric_generator.cpython-38.pyc
-    │   ├── test_metric2_total_cars_grouped_by_day_metric_generator.cpython-38.pyc
-    │   ├── test_metric3_top_three_values_metric_generator.cpython-38.pyc
-    │   └── test_metric4_three_least_consecutive_total_metric_generator.cpython-38.pyc
     ├── test_metric1_total_cars_metric_generator.py
     ├── test_metric2_total_cars_grouped_by_day_metric_generator.py
     ├── test_metric3_top_three_values_metric_generator.py
