@@ -11,15 +11,24 @@ class BaseMetricGenerator(ABC):
 
     @abstractmethod
     def enabled(self) -> bool:
+        """
+        return if the reporting metric is enabled
+        """
         raise NotImplementedError()
 
     @staticmethod
     @abstractmethod
     def order_number() -> int:
+        """
+        The serial number of metric. For processing metrics in order.
+        """
         raise NotImplementedError()
 
     @abstractmethod
     def meets_condition(self) -> bool:
+        """
+        The self._dataframe qualifies for this metric or not
+        """
         raise NotImplementedError()
 
     @abstractmethod
@@ -28,4 +37,7 @@ class BaseMetricGenerator(ABC):
 
     @abstractmethod
     def generate_metric_result(self) -> str:
+        """
+        string formulation of generate_metric for reporting purposes.
+        """
         raise NotImplementedError()

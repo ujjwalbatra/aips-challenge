@@ -16,6 +16,7 @@ if __name__ == "__main__":
         data_frame = data_reader.get_content()
         result: str = ''
 
+        # get all the type of metric to be reported, and run them if they are enabled + eligible
         for metric_cls in sorted(BaseMetricGenerator.__subclasses__(), key=lambda x: x.order_number()):
             metric_cls_obj = metric_cls(logger, data_frame)
             if metric_cls_obj.enabled() and metric_cls_obj.meets_condition():
